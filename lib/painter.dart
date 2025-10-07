@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 class BatPainter extends CustomPainter {
   final double flapProgress;
