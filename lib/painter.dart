@@ -50,9 +50,9 @@ class BatBody {
     final path = Path();
 
     path.moveTo(center.dx - 15, center.dy - 40);
-    path.lineTo(center.dx - 15, center.dy + 40);
+    path.lineTo(center.dx - 15, center.dy);
     path.arcToPoint(
-      Offset(center.dx + 15, center.dy + 40),
+      Offset(center.dx + 15, center.dy),
       radius: const Radius.circular(15),
       clockwise: false,
     );
