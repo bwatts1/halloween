@@ -23,7 +23,7 @@ class Test extends StatelessWidget {
                 left: 50,
                 child: CustomPaint(
                     size: const Size(200, 200),
-                    painter: BatPainter(.6), // Example flapProgress value
+                    painter: BatPainter(), // Example flapProgress value
                     ),
             ),
             const Text('This is a test screen'),
@@ -32,7 +32,7 @@ class Test extends StatelessWidget {
                 left: 50,
                 child: CustomPaint(
                     size: const Size(200, 200),
-                    painter: GhostPainter(.8), // Another example flapProgress value
+                    painter: GhostPainter(), // Another example flapProgress value
                     ),
             ),
         ],
