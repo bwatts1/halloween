@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'painter.dart';
+import 'second_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,7 +12,14 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Halloween Book'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        child: const Icon(Icons.book),
+        child: const Text('Open second screen'),
+        onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                builder: (context) => const SecondScreen(),
+                ),
+            );
+        },
       ),
     );
   }
