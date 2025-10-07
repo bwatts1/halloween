@@ -12,20 +12,34 @@ class SecondScreen extends StatelessWidget {
         title: const Text('Halloween Book'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Center(
-        child: Hero(
-          tag: 'dash',
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (context) => SecondScreen(), 
+      body: Stack(
+        children: [
+            Positioned.fill(
+                child: Container(
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                        image: AssetImage("images/walk.jpeg"),
+                        fit: BoxFit.cover, 
+                        ),
+                    ),
+                ),  
+            ),    
+            Center(
+                child: Hero(
+                    tag: 'dash',
+                    child: ElevatedButton(
+                        onPressed: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute<void>(
+                            builder: (context) => const SecondScreen(),
+                            ),
+                        );
+                        },
+                        child: const Text('Open second screen'),
+                    ),
                 ),
-              );
-            },
-            child: const Text('Open second screen'),
-          ),
-        ),
+            ),
+        ]
       ),
     );
   }
