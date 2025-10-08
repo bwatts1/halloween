@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'painter.dart';
 import 'second_screen.dart';
 
-class SecondScreen extends StatelessWidget {
-  const SecondScreen({super.key});
+class GameScreen extends StatelessWidget {
+  const GameScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class SecondScreen extends StatelessWidget {
                         onPressed: () {
                         Navigator.of(context).push(
                             MaterialPageRoute<void>(
-                            builder: (context) => const SecondScreen(),
+                            builder: (context) => const GameScreen(),
                             ),
                         );
                         },
