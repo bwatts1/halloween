@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart'; // Import HomeScreen
 import 'test.dart'; // Import Test screen
+import 'music_service.dart'; 
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await MusicService().playBackgroundMusic();
+
   runApp(const MyApp());
 }
 
