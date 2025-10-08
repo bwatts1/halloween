@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'painter.dart';
-import 'second_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,31 +10,24 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Halloween Book'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Stack( 
+      body: Stack(
         children: [
           Positioned.fill(
             child: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("images/entrence.jpeg"),
-                  fit: BoxFit.cover, 
+                  image: AssetImage("assets/images/entrence.jpeg"),
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
           ),
           Center(
-            child: Hero(
-              tag: 'dash',
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute<void>(
-                      builder: (context) => const SecondScreen(),
-                    ),
-                  );
-                },
-                child: const Text('Open second screen'),
-              ),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed('/game');
+              },
+              child: const Text('Start the Spooky Hunt'),
             ),
           ),
         ],

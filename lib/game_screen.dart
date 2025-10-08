@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'painter.dart';
-import 'second_screen.dart';
+import 'game_screen.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
