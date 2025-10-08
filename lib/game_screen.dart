@@ -1,45 +1,40 @@
 import 'package:flutter/material.dart';
-import 'painter.dart';
-import 'game_screen.dart';
+import 'dart:math';
+import 'music_service.dart';
+import 'spooky_item.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<SpookyItem> items = [
+      SpookyItem('ghost.png', false),
+      SpookyItem('bat.png', false),
+      SpookyItem('pumpkin.png', true),
+    ];
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Halloween Book'),
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      ),
       body: Stack(
-        children: [
-            Positioned.fill(
-                child: Container(
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                        image: AssetImage("images/walk.jpeg"),
-                        fit: BoxFit.cover, 
-                        ),
-                    ),
-                ),  
-            ),    
-            Center(
-                child: Hero(
-                    tag: 'dash',
-                    child: ElevatedButton(
-                        onPressed: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute<void>(
-                            builder: (context) => const GameScreen(),
-                            ),
-                        );
-                        },
-                        child: const Text('Open second screen'),
-                    ),
-                ),
+        children: items.map((item) {
+          final top = Random().nextDouble() * 500;
+          final left = Random().nextDouble() * 300;
+          return Positioned(
+            top: top,
+            left: left,
+            child: GestureDetector(
+              onTap: () {
+                if (item.isWinning) {
+                  MusicService().playSoundEffect('win.mp3');
+                  Navigator.pushNamed(context, '/win');
+                } else {
+                  MusicService().playSoundEffect('trap.mp3');
+                }
+              },
+              child: Image.asset('assets/images/${item.asset}', width: 80),
             ),
-        ]
+          );
+        }).toList(),
       ),
     );
   }

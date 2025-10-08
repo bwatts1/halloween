@@ -1,4 +1,3 @@
-// music_service.dart
 import 'package:audioplayers/audioplayers.dart';
 
 class MusicService {
@@ -13,7 +12,12 @@ class MusicService {
 
   Future<void> playBackgroundMusic() async {
     await _player.play(AssetSource('audio/background.mp3'));
-    await _player.setReleaseMode(ReleaseMode.loop); // loop music
+    await _player.setReleaseMode(ReleaseMode.loop);
+  }
+
+  Future<void> playSoundEffect(String fileName) async {
+    final effectPlayer = AudioPlayer();
+    await effectPlayer.play(AssetSource('audio/$fileName'));
   }
 
   Future<void> stopMusic() async {
