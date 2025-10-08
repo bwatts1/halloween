@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 import 'music_service.dart';
 import 'spooky_item.dart';
+import 'painter.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
@@ -9,32 +10,66 @@ class GameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<SpookyItem> items = [
-      SpookyItem('ghost.png', false),
-      SpookyItem('bat.png', false),
-      SpookyItem('pumpkin.png', true),
+      SpookyItem('ghost', false),
+      SpookyItem('bat', false),
+      SpookyItem('pumpkin', true), 
     ];
 
     return Scaffold(
       body: Stack(
-        children: items.map((item) {
-          final top = Random().nextDouble() * 500;
-          final left = Random().nextDouble() * 300;
-          return Positioned(
-            top: top,
-            left: left,
-            child: GestureDetector(
-              onTap: () {
-                if (item.isWinning) {
-                  MusicService().playSoundEffect('win.mp3');
-                  Navigator.pushNamed(context, '/win');
-                } else {
-                  MusicService().playSoundEffect('trap.mp3');
-                }
-              },
-              child: Image.asset('assets/images/${item.asset}', width: 80),
+        children: [
+          Positioned.fill(
+            child: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("images/walk.jpeg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-          );
-        }).toList(),
+          ),
+          ...items.map((item) {
+            final top = Random().nextDouble() * 500;
+            final left = Random().nextDouble() * 300;
+
+            CustomPainter painter;
+            switch (item.asset) {
+              case 'ghost':
+                painter = GhostPainter();
+                break;
+              case 'bat':
+                painter = BatPainter();
+                break;
+              case 'pumpkin':
+                painter = PumpkinPainter();
+                break;
+              default:
+                painter = BatPainter(); 
+            }
+
+            return Positioned(
+              top: top,
+              left: left,
+              child: GestureDetector(
+                onTap: () {
+                  if (item.isWinning) {
+                    MusicService().playSoundEffect('win.ogg');
+                    Navigator.pushNamed(context, '/win');
+                  } else {
+                    MusicService().playSoundEffect('trap.ogg');
+                  }
+                },
+                child: SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: CustomPaint(
+                    painter: painter,
+                  ),
+                ),
+              ),
+            );
+          }),
+        ],
       ),
     );
   }

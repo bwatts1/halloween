@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'music_service.dart'; // Make sure this is imported
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,7 +17,7 @@ class HomeScreen extends StatelessWidget {
             child: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/images/entrence.jpeg"),
+                  image: AssetImage("images/entrence.jpeg"),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -24,7 +25,13 @@ class HomeScreen extends StatelessWidget {
           ),
           Center(
             child: ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                try {
+                  await MusicService().playBackgroundMusic();
+                } catch (e) {
+                  debugPrint('Music playback failed: $e');
+                }
+
                 Navigator.of(context).pushNamed('/game');
               },
               child: const Text('Start the Spooky Hunt'),

@@ -11,7 +11,7 @@ class MusicService {
   }
 
   Future<void> playBackgroundMusic() async {
-    await _player.play(AssetSource('audio/background.mp3'));
+    await _player.play(AssetSource('audio/background.ogg'));
     await _player.setReleaseMode(ReleaseMode.loop);
   }
 

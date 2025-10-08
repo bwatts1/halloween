@@ -201,3 +201,20 @@ class RightPupil {
     );
   }
 }
+class PumpkinPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.orange
+      ..style = PaintingStyle.fill;
+
+    final center = Offset(size.width / 2, size.height / 2);
+    canvas.drawOval(Rect.fromCenter(center: center, width: 60, height: 50), paint);
+
+    final stemPaint = Paint()..color = Colors.brown;
+    canvas.drawRect(Rect.fromCenter(center: Offset(center.dx, center.dy - 30), width: 10, height: 20), stemPaint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+}
